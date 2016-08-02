@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity{
         findViews();
         initAdapter();
         initViewPager();
-        MyRetrofit m = new MyRetrofit();
     }
 
     private void findViews() {

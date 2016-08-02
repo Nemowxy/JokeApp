@@ -45,7 +45,7 @@ public class AndroidBean {
     }
 
     public static class ResultsBean {
-        private String id;
+        private String _id;
         private String createdAt;
         private String desc;
         private String publishedAt;
@@ -55,12 +55,12 @@ public class AndroidBean {
         private boolean used;
         private String who;
 
-        public String getId() {
-            return id;
+        public String get_id() {
+            return _id;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void set_id(String _id) {
+            this._id = _id;
         }
 
         public String getCreatedAt() {
