@@ -2,6 +2,8 @@ package com.nemo.joke.utils;
 
 
 import com.nemo.joke.bean.Channel;
+import com.nemo.joke.bean.GifBean;
+import com.nemo.joke.bean.GirlBean;
 import com.nemo.joke.bean.Joken;
 import com.nemo.joke.bean.TitleBean;
 
@@ -85,9 +87,48 @@ public class JSONUtils {
                 String s1=str.replaceAll("<p>","");
                 String s2=s1.replaceAll("</p>","");
                 String s3=s2.replaceAll("&nbsp;","");
-                System.out.println(s3);
                 joken.setText(s3);
                 list.add(joken);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public static ArrayList<GifBean> getGif(String result){
+        ArrayList<GifBean> list = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            JSONObject jsonObject1 = jsonObject.getJSONObject("showapi_res_body");
+            JSONArray jsonArray = jsonObject1.getJSONArray("contentlist");
+            for (int i=0;i<jsonArray.length();i++){
+                JSONObject object = (JSONObject) jsonArray.get(i);
+                GifBean bean = new GifBean();
+                bean.setTitle(object.getString("title"));
+                bean.setCt(object.getString("ct"));
+                bean.setImg(object.getString("img"));
+                list.add(bean);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
+    public static ArrayList<GirlBean> getGirls(String result){
+        ArrayList<GirlBean> list = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            JSONArray jsonArray = jsonObject.getJSONArray("newslist");
+            for (int i=0;i<jsonArray.length();i++){
+                JSONObject object = (JSONObject) jsonArray.get(i);
+                GirlBean b = new GirlBean();
+                b.setTitle(object.getString("title"));
+                b.setCtime(object.getString("ctime"));
+                b.setPicUrl(object.getString("picUrl"));
+                b.setUrl(object.getString("url"));
+                list.add(b);
             }
         } catch (JSONException e) {
             e.printStackTrace();

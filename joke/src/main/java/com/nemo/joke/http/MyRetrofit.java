@@ -1,9 +1,20 @@
 package com.nemo.joke.http;
 
+import android.content.Context;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.baidu.apistore.sdk.ApiCallBack;
 import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.baidu.apistore.sdk.network.Parameters;
 import com.nemo.joke.bean.Bean;
+import com.nemo.joke.bean.GifBean;
+import com.nemo.joke.inter.GIFApi;
 import com.nemo.joke.inter.GankApi;
 import com.nemo.joke.utils.JSONUtils;
 
@@ -18,19 +29,13 @@ import retrofit2.converter.fastjson.FastJsonConverterFactory;
 
 public class  MyRetrofit<T>{
 
-    //apistore
-    public static final String URL_API_BASE="http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text";
-    public static final String URL_JOKE_INFO="http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text";
-    public static final String URL_PHOTO_INFO="http://apis.baidu.com/txapi/mvtp/meinv";
 
     //gank网
     public static final String URL_GANK_BASE="http://gank.io/";
-    public static final String URL_ANDROID_INFO="http://gank.io/api/search/query/listview/category/Android";
-    public static final String URL_GRIL_INFO="http://gank.io/api/search/query/listview/category/福利";
-    public static final String URL_GIF_INFO="http://gank.io/api/search/query/listview/category/福利";
-    public static final String URL_VIDEO_INFO="http://gank.io/api/search/query/listview/category/休息视频";
-    public static final String URL_OTHER_INFO="http://gank.io/api/day/2015/08/06";
 
+    public static final String SCREET="8ac5e4c4bc9c4721a13aa3bde245679e";
+    public static final String APP_ID="22759";
+    public static final String URL_GIF="http://route.showapi.com/";
     private String mUrl = "";
 
     public MyRetrofit(){
@@ -56,26 +61,21 @@ public class  MyRetrofit<T>{
             }
         });
     }
-
-    public void getApiStoreInfo(String page,final IGetInfoListener listener){
-        Parameters para = new Parameters();
-        para.put("page", page);
-        ApiStoreSDK.execute(URL_API_BASE,ApiStoreSDK.GET,para,new ApiCallBack(){
+    public void getGifInfo(Context context,String page, final IGetInfoListener listener){
+        String url =URL_GIF+"341-3?maxResult=20"+"&page="+page+"&showapi_appid="+APP_ID+"&showapi_sign="+SCREET;
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void onComplete() {
-                System.out.println("complete");
+            public void onResponse(String s) {
+                listener.success(JSONUtils.getGif(s));
             }
-
+        }, new Response.ErrorListener() {
             @Override
-            public void onError(int i, String s, Exception e) {
-                listener.error(s);
-            }
-
-            @Override
-            public void onSuccess(int i, String s) {
-                listener.success(JSONUtils.getJoken(s));
+            public void onErrorResponse(VolleyError volleyError) {
+                listener.error(volleyError.getMessage());
             }
         });
+        queue.add(request);
     }
 
 
