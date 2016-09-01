@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nemo.joke.R;
@@ -28,8 +27,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import pl.droidsonroids.gif.GifImageView;
 
 /**
  * Created by nemo on 2016/7/24 0024.
@@ -219,11 +216,11 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
     public void onLoadMore() {
         page = String.valueOf(Integer.parseInt(page) + 1);
         if (channelName.equals("笑话")) {
-            retrofit.getGankInfo(channelName, page, new MyRetrofit.IGetInfoListener<Bean>() {
+            apiUtils.getJokeInfo(page, new MyRetrofit.IGetInfoListener<ArrayList<Joken>>() {
                 @Override
-                public void success(Bean o) {
-                    items.addAll(o.getResults());
-                    adapter.notifyDataSetChanged();
+                public void success(ArrayList<Joken> o) {
+                    items2.addAll(o);
+                    adapter2.notifyDataSetChanged();
                     onLoad();
                 }
 
@@ -261,14 +258,13 @@ public class NewsFragment extends Fragment implements XListView.IXListViewListen
                 }
             });
         } else {
-            apiUtils.getJokeInfo(page, new MyRetrofit.IGetInfoListener<ArrayList<Joken>>() {
+            retrofit.getGankInfo(channelName, page, new MyRetrofit.IGetInfoListener<Bean>() {
                 @Override
-                public void success(ArrayList<Joken> o) {
-                    items2.addAll(o);
-                    adapter2.notifyDataSetChanged();
+                public void success(Bean o) {
+                    items.addAll(o.getResults());
+                    adapter.notifyDataSetChanged();
                     onLoad();
                 }
-
                 @Override
                 public void error(String s) {
                     System.out.println(s);

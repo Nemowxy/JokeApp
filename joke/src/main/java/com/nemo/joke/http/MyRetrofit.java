@@ -6,15 +6,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.baidu.apistore.sdk.ApiCallBack;
-import com.baidu.apistore.sdk.ApiStoreSDK;
-import com.baidu.apistore.sdk.network.Parameters;
 import com.nemo.joke.bean.Bean;
-import com.nemo.joke.bean.GifBean;
-import com.nemo.joke.inter.GIFApi;
 import com.nemo.joke.inter.GankApi;
 import com.nemo.joke.utils.JSONUtils;
 
@@ -54,7 +48,6 @@ public class  MyRetrofit<T>{
             public void onResponse(Call<Bean> call, retrofit2.Response<Bean> response) {
                 listener.success(response.body());
             }
-
             @Override
             public void onFailure(Call<Bean> call, Throwable t) {
                 listener.error(t.getMessage());
