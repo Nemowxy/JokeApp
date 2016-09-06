@@ -140,6 +140,16 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             }
                             initmRecyclerView(girlAdapter,emptyView);
                         }
+                        girlAdapter.setOnItemClickListener(new OnItemClickListeners<GirlBean>() {
+                            @Override
+                            public void onItemClick(ViewHolder viewHolder, GirlBean data, int position) {
+                                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                                intent.putExtra("url",data.getUrl());
+                                intent.putExtra("title",data.getTitle());
+                                intent.putExtra("img",data.getPicUrl());
+                                startActivity(intent);
+                            }
+                        });
                         mRecyclerView.setAdapter(girlAdapter);
                     }
                     @Override
@@ -194,6 +204,7 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             public void onItemClick(ViewHolder viewHolder, Bean.ResultsBean data, int position) {
                                 Intent intent = new Intent(getContext(), WebViewActivity.class);
                                 intent.putExtra("url",data.getUrl());
+                                intent.putExtra("title",data.getDesc());
                                 startActivity(intent);
                             }
                         });
