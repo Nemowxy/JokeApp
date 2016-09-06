@@ -1,17 +1,12 @@
 package com.nemo.joke.bean;
 
-import java.util.List;
-
 /**
  * Created by nemo on 2016/8/3 0003.
  */
 
-public class GifBean {
+public class GifBean extends BaseBean{
 
-    private String title;
     private String img;
-    private String ct;
-
 
     public String getTitle() {
         return title;
@@ -30,11 +25,11 @@ public class GifBean {
     }
 
     public String getCt() {
-        return ct;
+        return time;
     }
 
     public void setCt(String ct) {
-        this.ct = ct;
+        this.time = ct;
     }
 }
 

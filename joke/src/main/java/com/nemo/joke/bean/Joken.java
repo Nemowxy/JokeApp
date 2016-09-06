@@ -3,9 +3,7 @@ package com.nemo.joke.bean;
 /**
  * Created by nemo on 2016/7/24 0024.
  */
-public class Joken {
-    private String title;
-    private String time;
+public class Joken extends BaseBean{
     private String text;
 
     public String getText() {
