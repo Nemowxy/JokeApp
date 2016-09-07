@@ -31,8 +31,6 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.3.2'
     compile name: 'SMSSDK-2.1.1', ext: 'aar'
     compile name: 'SMSSDKGUI-2.1.1', ext: 'aar'
-    compile files('libs/MobCommons-2016.0714.1402.jar')
-    compile files('libs/MobTools-2016.0714.1402.jar')
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'org.ligboy.retrofit2:converter-fastjson:2.1.0'

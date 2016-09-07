@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.nemo.joke.R;
 import com.nemo.joke.activity.WebViewActivity;
+import com.nemo.joke.activity.WebViewGirlActivity;
 import com.nemo.joke.adapter.AndroidAdapter;
 import com.nemo.joke.adapter.GifAdapter;
 import com.nemo.joke.adapter.GirlAdapter;
@@ -143,7 +144,7 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                         girlAdapter.setOnItemClickListener(new OnItemClickListeners<GirlBean>() {
                             @Override
                             public void onItemClick(ViewHolder viewHolder, GirlBean data, int position) {
-                                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                                Intent intent = new Intent(getContext(), WebViewGirlActivity.class);
                                 intent.putExtra("url",data.getUrl());
                                 intent.putExtra("title",data.getTitle());
                                 intent.putExtra("img",data.getPicUrl());

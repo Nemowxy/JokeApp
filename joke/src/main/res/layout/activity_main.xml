@@ -36,7 +36,7 @@
             peng:peng_drawableTop="@drawable/bottom1"
             peng:peng_drawableTopHeight="7dp"
             peng:peng_drawableTopWith="7dp"
-            android:text="新闻"
+            android:text="各种"
             android:textSize="10sp"
             />
 
@@ -71,6 +71,5 @@
             android:text="我的"
             android:textSize="10sp"
             />
-
     </RadioGroup>
 </LinearLayout>
