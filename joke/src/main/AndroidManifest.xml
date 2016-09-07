@@ -19,7 +19,7 @@
     <application
         android:name="com.nemo.joke.app.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/joke"
         android:hardwareAccelerated="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
