@@ -1,5 +1,7 @@
 package com.nemo.joke.http;
 
+import android.util.Log;
+
 import com.baidu.apistore.sdk.ApiCallBack;
 import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.baidu.apistore.sdk.network.Parameters;
@@ -10,7 +12,7 @@ import com.nemo.joke.utils.JSONUtils;
  */
 
 public class ApiUtils {
-    public static final String URL_API_BASE="http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text";
+        public static final String URL_API_BASE="http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text";
     public static final String URL_GIRL_BASE="http://apis.baidu.com/txapi/mvtp/meinv";
 
 
@@ -32,6 +34,7 @@ public class ApiUtils {
 
             @Override
             public void onSuccess(int i, String s) {
+                Log.e("onSuccess: ",s );
                 listener.success(JSONUtils.getJoken(s));
             }
         });

@@ -125,64 +125,64 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 });
                 break;
             case "福利":
-                apiFuli = new ApiUtils();
-                apiFuli.getGirlInfo("20", new MyRetrofit.IGetInfoListener<ArrayList<GirlBean>>() {
-                    @Override
-                    public void success(ArrayList<GirlBean> o) {
-                       // girls = o;
-                       // initAdapter(3);
-                        if(flag)
-                            girlAdapter.setLoadMoreData(o);
-                        else {
-                            if(girlAdapter == null)
-                             girlAdapter = new GirlAdapter(getContext(), o, true);
-                            else{
-                                girlAdapter.setNewData(o);
-                            }
-                            initmRecyclerView(girlAdapter,emptyView);
-                        }
-                        girlAdapter.setOnItemClickListener(new OnItemClickListeners<GirlBean>() {
-                            @Override
-                            public void onItemClick(ViewHolder viewHolder, GirlBean data, int position) {
-                                Intent intent = new Intent(getContext(), WebViewGirlActivity.class);
-                                intent.putExtra("url",data.getUrl());
-                                intent.putExtra("title",data.getTitle());
-                                intent.putExtra("img",data.getPicUrl());
-                                startActivity(intent);
-                            }
-                        });
-                        mRecyclerView.setAdapter(girlAdapter);
-                    }
-                    @Override
-                    public void error(String s) {
-                        System.out.println(s);
-                    }
-                });
+//                apiFuli = new ApiUtils();
+//                apiFuli.getGirlInfo("20", new MyRetrofit.IGetInfoListener<ArrayList<GirlBean>>() {
+//                    @Override
+//                    public void success(ArrayList<GirlBean> o) {
+//                       // girls = o;
+//                       // initAdapter(3);
+//                        if(flag)
+//                            girlAdapter.setLoadMoreData(o);
+//                        else {
+//                            if(girlAdapter == null)
+//                             girlAdapter = new GirlAdapter(getContext(), o, true);
+//                            else{
+//                                girlAdapter.setNewData(o);
+//                            }
+//                            initmRecyclerView(girlAdapter,emptyView);
+//                        }
+//                        girlAdapter.setOnItemClickListener(new OnItemClickListeners<GirlBean>() {
+//                            @Override
+//                            public void onItemClick(ViewHolder viewHolder, GirlBean data, int position) {
+//                                Intent intent = new Intent(getContext(), WebViewGirlActivity.class);
+//                                intent.putExtra("url",data.getUrl());
+//                                intent.putExtra("title",data.getTitle());
+//                                intent.putExtra("img",data.getPicUrl());
+//                                startActivity(intent);
+//                            }
+//                        });
+//                        mRecyclerView.setAdapter(girlAdapter);
+//                    }
+//                    @Override
+//                    public void error(String s) {
+//                        System.out.println(s);
+//                    }
+//                });
                 break;
             case "笑话":
-                apiJoken = new ApiUtils();
-                apiJoken.getJokeInfo("20", new MyRetrofit.IGetInfoListener<ArrayList<Joken>>() {
-                    @Override
-                    public void success(ArrayList<Joken> o) {
-                        // girls = o;
-                        // initAdapter(3);
-                        if(flag)
-                            jokenAdapter.setLoadMoreData(o);
-                        else {
-                            if(jokenAdapter == null)
-                              jokenAdapter = new JokenAdapter(getContext(), o, true);
-                            else{
-                                jokenAdapter.setNewData(o);
-                            }
-                            initmRecyclerView(jokenAdapter,emptyView);
-                        }
-                        mRecyclerView.setAdapter(jokenAdapter);
-                    }
-                    @Override
-                    public void error(String s) {
-                        System.out.println(s);
-                    }
-                });
+//                apiJoken = new ApiUtils();
+//                apiJoken.getJokeInfo("20", new MyRetrofit.IGetInfoListener<ArrayList<Joken>>() {
+//                    @Override
+//                    public void success(ArrayList<Joken> o) {
+//                        // girls = o;
+//                        // initAdapter(3);
+//                        if(flag)
+//                            jokenAdapter.setLoadMoreData(o);
+//                        else {
+//                            if(jokenAdapter == null)
+//                              jokenAdapter = new JokenAdapter(getContext(), o, true);
+//                            else{
+//                                jokenAdapter.setNewData(o);
+//                            }
+//                            initmRecyclerView(jokenAdapter,emptyView);
+//                        }
+//                        mRecyclerView.setAdapter(jokenAdapter);
+//                    }
+//                    @Override
+//                    public void error(String s) {
+//                        System.out.println(s);
+//                    }
+//                });
                 break;
             default:
                 retroAndroid = new MyRetrofit<>();
