@@ -18,7 +18,7 @@ import java.util.List;
  * Created by nemo on 2016/9/5 0005.
  */
 
-public class GirlAdapter extends BaseAdapter<GirlBean> implements OnItemClickListeners<GirlBean>{
+public class GirlAdapter extends BaseAdapter<GirlBean>{
     private Context context;
 
     public GirlAdapter(Context context, List<GirlBean> datas, boolean isOpenLoadMore) {
@@ -41,10 +41,5 @@ public class GirlAdapter extends BaseAdapter<GirlBean> implements OnItemClickLis
         return R.layout.list_item;
     }
 
-    @Override
-    public void onItemClick(ViewHolder viewHolder, GirlBean data, int position) {
-        Intent intent = new Intent(context, WebViewActivity.class);
-        intent.putExtra("url",data.getUrl());
-        context.startActivity(intent);
-    }
+
 }

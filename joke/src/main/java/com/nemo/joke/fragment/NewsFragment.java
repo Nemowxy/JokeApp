@@ -115,8 +115,8 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                                 gifAdapter.setNewData(o);
                             }
                             initmRecyclerView(gifAdapter,emptyView);
+                            mRecyclerView.setAdapter(gifAdapter);
                         }
-                        mRecyclerView.setAdapter(gifAdapter);
                     }
                     @Override
                     public void error(String s) {
@@ -126,7 +126,7 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 break;
             case "福利":
                 apiFuli = new ApiUtils();
-                apiFuli.getGirlInfo(getContext(),"20", new MyRetrofit.IGetInfoListener<ArrayList<GirlBean>>() {
+                apiFuli.getGirlInfo(getContext(),page, new MyRetrofit.IGetInfoListener<ArrayList<GirlBean>>() {
                     @Override
                     public void success(ArrayList<GirlBean> o) {
                        // girls = o;
@@ -140,18 +140,18 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                                 girlAdapter.setNewData(o);
                             }
                             initmRecyclerView(girlAdapter,emptyView);
+                            girlAdapter.setOnItemClickListener(new OnItemClickListeners<GirlBean>() {
+                                @Override
+                                public void onItemClick(ViewHolder viewHolder, GirlBean data, int position) {
+                                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+                                    intent.putExtra("url",data.getUrl());
+                                    intent.putExtra("title",data.getTitle());
+                                    intent.putExtra("img",data.getPicUrl());
+                                    startActivity(intent);
+                                }
+                            });
+                            mRecyclerView.setAdapter(girlAdapter);
                         }
-                        girlAdapter.setOnItemClickListener(new OnItemClickListeners<GirlBean>() {
-                            @Override
-                            public void onItemClick(ViewHolder viewHolder, GirlBean data, int position) {
-                                Intent intent = new Intent(getContext(), WebViewGirlActivity.class);
-                                intent.putExtra("url",data.getUrl());
-                                intent.putExtra("title",data.getTitle());
-                                intent.putExtra("img",data.getPicUrl());
-                                startActivity(intent);
-                            }
-                        });
-                        mRecyclerView.setAdapter(girlAdapter);
                     }
                     @Override
                     public void error(String s) {
@@ -161,13 +161,14 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 break;
             case "笑话":
                 apiJoken = new ApiUtils();
-                apiJoken.getJokeInfo(getContext(),"20", new MyRetrofit.IGetInfoListener<ArrayList<Joken>>() {
+                apiJoken.getJokeInfo(getContext(),page, new MyRetrofit.IGetInfoListener<ArrayList<Joken>>() {
                     @Override
                     public void success(ArrayList<Joken> o) {
                         // girls = o;
                         // initAdapter(3);
-                        if(flag)
+                        if(flag){
                             jokenAdapter.setLoadMoreData(o);
+                        }
                         else {
                             if(jokenAdapter == null)
                               jokenAdapter = new JokenAdapter(getContext(), o, true);
@@ -175,8 +176,8 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                                 jokenAdapter.setNewData(o);
                             }
                             initmRecyclerView(jokenAdapter,emptyView);
+                            mRecyclerView.setAdapter(jokenAdapter);
                         }
-                        mRecyclerView.setAdapter(jokenAdapter);
                     }
                     @Override
                     public void error(String s) {
@@ -191,6 +192,7 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     public void success(Bean o) {
                         // gifs = o;
                         if(flag)
+
                             androidAdapter.setLoadMoreData(o.getResults());
                         else {
                             if(androidAdapter == null)
@@ -198,18 +200,19 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             else{
                                 androidAdapter.setNewData(o.getResults());
                             }
+
                             initmRecyclerView(androidAdapter,emptyView);
+                            androidAdapter.setOnItemClickListener(new OnItemClickListeners<Bean.ResultsBean>() {
+                                @Override
+                                public void onItemClick(ViewHolder viewHolder, Bean.ResultsBean data, int position) {
+                                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+                                    intent.putExtra("url",data.getUrl());
+                                    intent.putExtra("title",data.getDesc());
+                                    startActivity(intent);
+                                }
+                            });
+                            mRecyclerView.setAdapter(androidAdapter);
                         }
-                        androidAdapter.setOnItemClickListener(new OnItemClickListeners<Bean.ResultsBean>() {
-                            @Override
-                            public void onItemClick(ViewHolder viewHolder, Bean.ResultsBean data, int position) {
-                                Intent intent = new Intent(getContext(), WebViewActivity.class);
-                                intent.putExtra("url",data.getUrl());
-                                intent.putExtra("title",data.getDesc());
-                                startActivity(intent);
-                            }
-                        });
-                        mRecyclerView.setAdapter(androidAdapter);
                     }
                     @Override
                     public void error(String s) {
