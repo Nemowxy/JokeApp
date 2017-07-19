@@ -120,7 +120,8 @@ public class JSONUtils {
         ArrayList<GirlBean> list = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(result);
-            JSONArray jsonArray = jsonObject.getJSONArray("newslist");
+            JSONObject o1 = jsonObject.getJSONObject("showapi_res_body");
+            JSONArray jsonArray = o1.getJSONArray("newslist");
             for (int i=0;i<jsonArray.length();i++){
                 JSONObject object = (JSONObject) jsonArray.get(i);
                 GirlBean b = new GirlBean();

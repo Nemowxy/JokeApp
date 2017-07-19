@@ -4,8 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JokeApp.iml" filepath="$PROJECT_DIR$/JokeApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/JokeApp.iml" filepath="$PROJECT_DIR$/JokeApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JokeApp.iml" filepath="$PROJECT_DIR$/JokeApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/joke/joke.iml" filepath="$PROJECT_DIR$/joke/joke.iml" />
       <module fileurl="file://$PROJECT_DIR$/joke/joke.iml" filepath="$PROJECT_DIR$/joke/joke.iml" />
       <module fileurl="file://$PROJECT_DIR$/joke/joke.iml" filepath="$PROJECT_DIR$/joke/joke.iml" />
     </modules>
