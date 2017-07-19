@@ -26,7 +26,7 @@ import okhttp3.Response;
 
 public class ApiUtils {
     public static final String URL_API_BASE="http://route.showapi.com/341-1";
-    public static final String URL_GIRL_BASE="http://route.showapi.com/197-1";
+    public static final String URL_GIRL_BASE="http://route.showapi.com/819-1";
 
 
 
@@ -48,8 +48,8 @@ public class ApiUtils {
         queue.add(request);
     }
 
-    public void getGirlInfo(Context context,final String num, final MyRetrofit.IGetInfoListener listener){
-        String url =URL_GIRL_BASE+"?showapi_appid=22759&showapi_sign=8ac5e4c4bc9c4721a13aa3bde245679e&page=1&ran=0&num="+num;
+    public void getGirlInfo(Context context,final String page, final MyRetrofit.IGetInfoListener listener){
+        String url =URL_GIRL_BASE+"?showapi_appid=22759&showapi_sign=8ac5e4c4bc9c4721a13aa3bde245679e&page="+page;
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest request = new StringRequest(com.android.volley.Request.Method.GET, url, new com.android.volley.Response.Listener<String>() {
             @Override

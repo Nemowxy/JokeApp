@@ -143,7 +143,7 @@ public class NewsFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                             girlAdapter.setOnItemClickListener(new OnItemClickListeners<GirlBean>() {
                                 @Override
                                 public void onItemClick(ViewHolder viewHolder, GirlBean data, int position) {
-                                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+                                    Intent intent = new Intent(getContext(), WebViewGirlActivity.class);
                                     intent.putExtra("url",data.getUrl());
                                     intent.putExtra("title",data.getTitle());
                                     intent.putExtra("img",data.getPicUrl());

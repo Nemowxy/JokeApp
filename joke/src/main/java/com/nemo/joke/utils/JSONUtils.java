@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by nemo on 2016/7/25 0025.
@@ -121,13 +122,13 @@ public class JSONUtils {
         try {
             JSONObject jsonObject = new JSONObject(result);
             JSONObject o1 = jsonObject.getJSONObject("showapi_res_body");
-            JSONArray jsonArray = o1.getJSONArray("newslist");
-            for (int i=0;i<jsonArray.length();i++){
-                JSONObject object = (JSONObject) jsonArray.get(i);
+
+            for (int i=0;i<o1.length();i++){
+                JSONObject object = o1.getJSONObject(String.valueOf(i));
                 GirlBean b = new GirlBean();
                 b.setTitle(object.getString("title"));
-                b.setCtime(object.getString("ctime"));
-                b.setPicUrl(object.getString("picUrl"));
+                b.setCtime("");
+                b.setPicUrl(object.getString("thumb"));
                 b.setUrl(object.getString("url"));
                 list.add(b);
             }
